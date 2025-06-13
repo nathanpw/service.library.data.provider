@@ -537,7 +537,7 @@ def _combine_by_date(liz_a, date_a, liz_b, date_b, limit, settinglimit):
             date_a.append(date_b[-1])
 
     # Limit the results
-    if limit is not -1:
+    if limit != -1:
         full_liz = full_liz[:limit]
     full_liz = full_liz[:settinglimit]
 
