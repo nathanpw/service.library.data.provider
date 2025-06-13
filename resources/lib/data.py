@@ -26,6 +26,7 @@ import xbmcaddon
 import xbmcplugin
 import json as simplejson
 from resources.lib import library
+from infotagger.listitem import ListItemInfoTag
 
 
 ADDON = xbmcaddon.Addon()
@@ -154,7 +155,7 @@ def parse_movies(request, list_type, full_liz, usecache, plot_enable, limit, dat
                                                       "Trailer": movie['trailer'],
                                                       "Playcount": movie['playcount']})
                 info_tagger = ListItemInfoTag(liz, 'video')
-                info_tagger._info_tag.setResumePoint(str(movie['resume']['position']), str(movie['resume']['total']))
+                info_tagger._info_tag.setResumePoint(float(movie['resume']['position']), float(movie['resume']['total']))
                 liz.setProperty("type", ADDON_LANGUAGE(list_type))
                 liz.setProperty("dbid", str(movie['movieid']))
                 liz.setProperty("imdbnumber", str(movie['imdbnumber']))
@@ -227,7 +228,7 @@ def parse_tvshows_recommended(request, list_type, full_liz, usecache, plot_enabl
                                                               "mediatype": "episode"})
                         liz.setProperty("episodeno", fEpisode)
                         info_tagger = ListItemInfoTag(liz, 'video')
-                        info_tagger._info_tag.setResumePoint(str(episode['resume']['position']), str(episode['resume']['total']))
+                        info_tagger._info_tag.setResumePoint(float(episode['resume']['position']), float(episode['resume']['total']))
                         liz.setProperty("type", ADDON_LANGUAGE(list_type))
                         liz.setProperty("fanart_image", episode['art'].get('tvshow.fanart', ''))
                         liz.setProperty("dbid", str(episode['episodeid']))
@@ -296,7 +297,7 @@ def parse_tvshows(request, list_type, full_liz, usecache, plot_enable, limit, da
                                                       "mediatype": "episode"})
                 liz.setProperty("episodeno", fEpisode)
                 info_tagger = ListItemInfoTag(liz, 'video')
-                info_tagger._info_tag.setResumePoint(str(episode['resume']['position']), str(episode['resume']['total']))
+                info_tagger._info_tag.setResumePoint(float(episode['resume']['position']), float(episode['resume']['total']))
                 liz.setProperty("type", ADDON_LANGUAGE(list_type))
                 liz.setProperty("dbid", str(episode['episodeid']))
                 liz.setProperty("fanart_image", episode['art'].get('tvshow.fanart', ''))
@@ -426,7 +427,7 @@ def parse_musicvideos(request, list_type, full_liz, usecache, plot_enable, limit
                                                       "Playcount": musicvideo['playcount'],
                                                       "mediatype": "musicvideo"})
                 info_tagger = ListItemInfoTag(liz, 'video')
-                info_tagger._info_tag.setResumePoint(str(musicvideo['resume']['position']), str(musicvideo['resume']['total']))
+                info_tagger._info_tag.setResumePoint(float(musicvideo['resume']['position']), float(musicvideo['resume']['total']))
                 liz.setProperty("type", ADDON_LANGUAGE(list_type))
                 liz.setProperty("dbid", str(musicvideo['musicvideoid']))
                 liz.setProperty("fanart_image", musicvideo['art'].get('fanart', ''))

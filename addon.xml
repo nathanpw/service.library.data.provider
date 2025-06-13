@@ -3,6 +3,7 @@
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 		<import addon="script.module.routing" version="0.1.0"/>
+		<import addon="script.module.infotagger" version="0.0.8" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="plugin.py">
 		<provides>video</provides>
