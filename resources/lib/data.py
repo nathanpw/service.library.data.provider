@@ -153,8 +153,8 @@ def parse_movies(request, list_type, full_liz, usecache, plot_enable, limit, dat
                                                       "mediatype": "movie",
                                                       "Trailer": movie['trailer'],
                                                       "Playcount": movie['playcount']})
-                liz.setProperty("resumetime", str(movie['resume']['position']))
-                liz.setProperty("totaltime", str(movie['resume']['total']))
+                info_tagger = ListItemInfoTag(liz, 'video')
+                info_tagger._info_tag.setResumePoint(str(movie['resume']['position']), str(movie['resume']['total']))
                 liz.setProperty("type", ADDON_LANGUAGE(list_type))
                 liz.setProperty("dbid", str(movie['movieid']))
                 liz.setProperty("imdbnumber", str(movie['imdbnumber']))
@@ -226,8 +226,8 @@ def parse_tvshows_recommended(request, list_type, full_liz, usecache, plot_enabl
                                                               "CastAndRole": cast[1],
                                                               "mediatype": "episode"})
                         liz.setProperty("episodeno", fEpisode)
-                        liz.setProperty("resumetime", str(episode['resume']['position']))
-                        liz.setProperty("totaltime", str(episode['resume']['total']))
+                        info_tagger = ListItemInfoTag(liz, 'video')
+                        info_tagger._info_tag.setResumePoint(str(episode['resume']['position']), str(episode['resume']['total']))
                         liz.setProperty("type", ADDON_LANGUAGE(list_type))
                         liz.setProperty("fanart_image", episode['art'].get('tvshow.fanart', ''))
                         liz.setProperty("dbid", str(episode['episodeid']))
@@ -295,8 +295,8 @@ def parse_tvshows(request, list_type, full_liz, usecache, plot_enable, limit, da
                                                       "CastAndRole": cast[1],
                                                       "mediatype": "episode"})
                 liz.setProperty("episodeno", fEpisode)
-                liz.setProperty("resumetime", str(episode['resume']['position']))
-                liz.setProperty("totaltime", str(episode['resume']['total']))
+                info_tagger = ListItemInfoTag(liz, 'video')
+                info_tagger._info_tag.setResumePoint(str(episode['resume']['position']), str(episode['resume']['total']))
                 liz.setProperty("type", ADDON_LANGUAGE(list_type))
                 liz.setProperty("dbid", str(episode['episodeid']))
                 liz.setProperty("fanart_image", episode['art'].get('tvshow.fanart', ''))
@@ -425,8 +425,8 @@ def parse_musicvideos(request, list_type, full_liz, usecache, plot_enable, limit
                                                       "Director": _get_joined_items(musicvideo.get('director', "")),
                                                       "Playcount": musicvideo['playcount'],
                                                       "mediatype": "musicvideo"})
-                liz.setProperty("resumetime", str(musicvideo['resume']['position']))
-                liz.setProperty("totaltime", str(musicvideo['resume']['total']))
+                info_tagger = ListItemInfoTag(liz, 'video')
+                info_tagger._info_tag.setResumePoint(str(musicvideo['resume']['position']), str(musicvideo['resume']['total']))
                 liz.setProperty("type", ADDON_LANGUAGE(list_type))
                 liz.setProperty("dbid", str(musicvideo['musicvideoid']))
                 liz.setProperty("fanart_image", musicvideo['art'].get('fanart', ''))
